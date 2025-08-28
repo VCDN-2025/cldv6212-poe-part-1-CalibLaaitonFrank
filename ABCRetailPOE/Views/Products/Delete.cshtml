@@ -1,0 +1,38 @@
+﻿@model ABCRetail.Models.ProductEntity
+@{
+    ViewData["Title"] = "Delete Product";
+
+    //  blob URL 
+    string blobUrl = !string.IsNullOrWhiteSpace(Model.ImageBlobName)
+        ? $"https://<your_storage_account>.blob.core.windows.net/products/{Model.ImageBlobName}"
+        : null;
+}
+
+<h2>Delete Product</h2>
+
+<h4>Are you sure you want to delete this product?</h4>
+
+<div class="border p-3 mb-3">
+    <p><strong>SKU:</strong> @Model.Sku</p>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Brand:</strong> @Model.Brand</p>
+    <p><strong>Category:</strong> @Model.Category</p>
+    <p><strong>Price:</strong> R@Model.Price</p>
+    <p><strong>Stock:</strong> @Model.Stock</p>
+
+    @if (!string.IsNullOrEmpty(Model.ImageBlobName))
+    {
+        <img src="@blobUrl" alt="@Model.Name" class="img-thumbnail" style="max-width:150px;" />
+    }
+    else
+    {
+        <p><em>No image available</em></p>
+    }
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="RowKey" />
+    <input type="hidden" asp-for="PartitionKey" />
+    <button class="btn btn-danger" type="submit">Delete</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>

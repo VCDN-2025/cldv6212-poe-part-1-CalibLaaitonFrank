@@ -1,0 +1,17 @@
+﻿@model ABCRetail.Models.OrderEntity
+
+<h2>Order Details</h2>
+<dl class="row">
+    <dt class="col-sm-2">Customer</dt>
+    <dd class="col-sm-10">@Model.CustomerName</dd>
+
+    <dt class="col-sm-2">Product</dt>
+    <dd class="col-sm-10">@Model.ProductName</dd>
+
+    <dt class="col-sm-2">Quantity</dt>
+    <dd class="col-sm-10">@Model.Quantity</dd>
+
+    <dt class="col-sm-2">Date</dt>
+    <dd class="col-sm-10">@Model.OrderDate.ToString("yyyy-MM-dd")</dd>
+</dl>
+<a href="/Order" class="btn btn-secondary">Back to List</a>

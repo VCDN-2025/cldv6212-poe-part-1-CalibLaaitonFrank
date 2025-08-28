@@ -1,0 +1,10 @@
+﻿@model ABCRetail.Models.CustomerEntity
+<h2>New Customer</h2>
+<form method="post">
+    <div class="mb-2"><label>Full Name</label><input class="form-control" asp-for="FullName" /></div>
+    <div class="mb-2"><label>Email</label><input class="form-control" asp-for="Email" /></div>
+    <div class="mb-2"><label>Phone</label><input class="form-control" asp-for="Phone" /></div>
+    <div class="mb-2"><label>City</label><input class="form-control" asp-for="City" /></div>
+    <div class="mb-2"><label>Loyalty Tier</label><input class="form-control" asp-for="LoyaltyTier" /></div>
+    <button class="btn btn-success" type="submit">Save</button>
+</form>

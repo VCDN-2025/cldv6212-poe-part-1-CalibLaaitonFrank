@@ -1,0 +1,62 @@
+﻿@model ABCRetail.Models.ProductEntity
+@{
+    ViewData["Title"] = "Edit Product";
+
+    //  blob URL 
+    string blobUrl = !string.IsNullOrWhiteSpace(Model.ImageBlobName)
+        ? $"https://st10451026.blob.core.windows.net/products/{Model.ImageBlobName}"
+        : null;
+}
+
+<h2>Edit Product</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="RowKey" />
+    <input type="hidden" asp-for="PartitionKey" />
+
+    <div class="mb-2">
+        <label>SKU</label>
+        <input class="form-control" asp-for="Sku" readonly />
+    </div>
+
+    <div class="mb-2">
+        <label>Name</label>
+        <input class="form-control" asp-for="Name" />
+    </div>
+
+    <div class="mb-2">
+        <label>Brand</label>
+        <input class="form-control" asp-for="Brand" />
+    </div>
+
+    <div class="mb-2">
+        <label>Category</label>
+        <input class="form-control" asp-for="Category" />
+    </div>
+
+    <div class="mb-2">
+        <label>Price</label>
+        <input class="form-control" asp-for="Price" type="number" step="0.01" />
+    </div>
+
+    <div class="mb-2">
+        <label>Stock</label>
+        <input class="form-control" asp-for="Stock" type="number" />
+    </div>
+
+    <div class="mb-2">
+        <label>Image</label>
+        <input class="form-control" type="file" name="imageFile" accept="image/*" />
+        @if (!string.IsNullOrEmpty(Model.ImageBlobName))
+        {
+            <img src="@blobUrl" alt="@Model.Name" class="img-thumbnail mt-2" style="max-width:150px;" />
+        }
+        else
+        {
+            <p><em>No image uploaded</em></p>
+        }
+    </div>
+
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>

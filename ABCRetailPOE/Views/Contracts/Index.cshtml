@@ -1,0 +1,12 @@
+﻿@model List<string>
+<h2>Contracts (Azure Files)</h2>
+<form method="post" enctype="multipart/form-data" action="/Contracts/Upload">
+    <input type="file" name="contract" />
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+<ul class="mt-3">
+    @foreach (var f in Model)
+    {
+        <li>@f - <a href="/Contracts/Download/@f">Download</a></li>
+    }
+</ul>
